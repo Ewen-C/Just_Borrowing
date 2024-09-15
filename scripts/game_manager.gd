@@ -1,6 +1,6 @@
 extends Node
 
-@onready var timer = $Timer
+@onready var timer = $TimerQuit
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
