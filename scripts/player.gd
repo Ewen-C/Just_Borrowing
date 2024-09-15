@@ -15,7 +15,7 @@ var percent_to_next_tile = 0.0
 func _physics_process(delta):
 	if !is_moving :
 		process_new_input()
-	elif movement_direction != Vector2.ZERO:
+	elif movement_direction != Vector2.ZERO :
 		move_player(delta)
 		
 func process_new_input() :
