@@ -41,6 +41,7 @@ func move_player(delta) :
 		percent_to_next_tile = 0.0
 		is_moving = false # Enables new input
 		
+		check_new_tile.emit(movement_direction) # Signal
 		process_new_input()
 		if movement_direction == Vector2.ZERO : animated_sprite.play("Idle")
 		
@@ -51,3 +52,5 @@ func raycast_check_movement() :
 	raycast.target_position = movement_direction * TILE_SIZE
 	raycast.force_raycast_update()
 	return !raycast.is_colliding()
+
+signal check_new_tile(Vector2)
