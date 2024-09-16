@@ -2465,7 +2465,6 @@ layer_1/name = "Obstacles"
 layer_1/tile_data = PackedInt32Array(-65541, 917504, 7, -5, 917504, 8, 65531, 917504, 9, 131067, 917504, 10, 196603, 917504, 11, -131068, 917504, 7, -65532, 917504, 8, 4, 917504, 9, 65540, 917504, 10, 131076, 917504, 11, -262149, 917504, 6, -262148, 917504, 6, -262147, 917504, 6, -262146, 917504, 6, -262145, 917504, 6, -327680, 917504, 6, -327679, 917504, 6, -327678, 917504, 6, -327677, 917504, 6, -327676, 917504, 6, 327675, 917504, 6, 327676, 917504, 6, 327677, 917504, 6, 327678, 917504, 6, 262145, 917504, 6, 262146, 917504, 6, 262147, 917504, 6, 262148, 917504, 6, 262139, 917504, 11, 196612, 917504, 11, -196604, 917504, 11, -262140, 917504, 11, -131077, 917504, 11, -196613, 917504, 11)
 
 [node name="Camera" type="Camera2D" parent="."]
-position_smoothing_enabled = true
 position_smoothing_speed = 4.0
 script = ExtResource("4_pvwy4")
 
@@ -2487,6 +2486,7 @@ shape = SubResource("RectangleShape2D_5oke7")
 one_way_collision_margin = 0.0
 
 [connection signal="timeout" from="GameManager/TimerQuit" to="GameManager" method="_on_timer_timeout"]
+[connection signal="force_move_player" from="Camera" to="Player" method="_on_camera_force_move_player"]
 [connection signal="check_new_tile" from="Player" to="Transitions/Area2D" method="_on_player_check_new_tile"]
 [connection signal="body_entered" from="Transitions/Area2D" to="Transitions/Area2D" method="_on_body_entered"]
 [connection signal="body_exited" from="Transitions/Area2D" to="Transitions/Area2D" method="_on_body_exited"]

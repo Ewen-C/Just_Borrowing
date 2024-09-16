@@ -18,12 +18,14 @@ func _physics_process(delta):
 	elif movement_direction != Vector2.ZERO :
 		move_player(delta)
 		
-func process_new_input() :
-	if !movement_direction.y : movement_direction.x = Input.get_axis("move_left", "move_right")
-	if !movement_direction.x : movement_direction.y = Input.get_axis("move_up", "move_down")
+func process_new_input(override = false) :
+	if !override :
+		if !movement_direction.y : movement_direction.x = Input.get_axis("move_left", "move_right")
+		if !movement_direction.x : movement_direction.y = Input.get_axis("move_up", "move_down")
 	
 	if movement_direction != Vector2.ZERO :
-		if !raycast_check_movement() : animated_sprite.play("Idle"); return;
+		# TODO : Walk animation at half speed instead of Idle
+		if !raycast_check_movement() : animated_sprite.play("Idle"); return; 
 		
 		start_movement_position = position
 		is_moving = true
@@ -41,9 +43,11 @@ func move_player(delta) :
 		percent_to_next_tile = 0.0
 		is_moving = false # Enables new input
 		
-		check_new_tile.emit(movement_direction) # Signal
+		var old_direction = movement_direction
 		process_new_input()
 		if movement_direction == Vector2.ZERO : animated_sprite.play("Idle")
+		
+		check_new_tile.emit(old_direction) # Signal
 		
 	else :
 		position = start_movement_position + (TILE_SIZE * movement_direction * percent_to_next_tile)
@@ -54,3 +58,7 @@ func raycast_check_movement() :
 	return !raycast.is_colliding()
 
 signal check_new_tile(Vector2)
+
+func _on_camera_force_move_player(in_movement_direction):
+	movement_direction = in_movement_direction
+	process_new_input(true)
