@@ -30,10 +30,11 @@ func process_new_input(override = false) :
 		start_movement_position = position
 		is_moving = true
 		
-		if movement_direction.x == 1 : animated_sprite.play("Walk_Right")
-		elif movement_direction.x == -1 : animated_sprite.play("Walk_Left")
+		if movement_direction.x != 0 : animated_sprite.play("Walk_Right")
 		elif movement_direction.y == 1 : animated_sprite.play("Walk_Down")
 		else : animated_sprite.play("Walk_Up")
+		
+		animated_sprite.flip_h = (movement_direction.x == -1) # Flip the sprite
 	
 func move_player(delta) :
 	percent_to_next_tile += walk_speed * delta
