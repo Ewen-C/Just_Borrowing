@@ -5,6 +5,7 @@ const TILE_SIZE = 16
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var raycast = $RayCast2D
+@onready var steps_sfx_player = $StepsSFXPlayer
 
 var is_moving = false
 var start_movement_position = Vector2(0, 0)
@@ -30,6 +31,9 @@ func process_new_input(override = false) :
 		start_movement_position = position
 		is_moving = true
 		
+		if !steps_sfx_player.playing:
+			steps_sfx_player.play()
+
 		if movement_direction.x == 1 : animated_sprite.play("Walk_Right")
 		elif movement_direction.x == -1 : animated_sprite.play("Walk_Left")
 		elif movement_direction.y == 1 : animated_sprite.play("Walk_Down")
