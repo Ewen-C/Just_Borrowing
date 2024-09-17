@@ -8,7 +8,8 @@ var target_position = Vector2 (0, 0)
 func _on_area_2d_camera_room_transition(movement_direction):
 	target_position += room_size * movement_direction
 	var tween = create_tween()
-	tween.tween_property(self, "position", target_position, transition_speed).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	tween.tween_property(self, "position", target_position, transition_speed)\
+		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
 	force_move_player.emit(movement_direction)
 
 signal force_move_player(Vector2)
