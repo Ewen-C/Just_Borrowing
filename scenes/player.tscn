@@ -81,7 +81,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Walk_Down",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -98,7 +98,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Walk_Right",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -115,7 +115,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Walk_Up",
-"speed": 5.0
+"speed": 7.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1oqwn"]
@@ -126,7 +126,7 @@ script = ExtResource("1_47ri6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_od3bd")
-animation = &"Walk_Up"
+animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_1oqwn")

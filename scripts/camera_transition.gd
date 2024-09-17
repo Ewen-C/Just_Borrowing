@@ -6,7 +6,7 @@ extends Camera2D
 var target_position = Vector2 (0, 0)
 
 func _on_area_2d_camera_room_transition(movement_direction):
-	target_position = position + room_size * movement_direction
+	target_position += room_size * movement_direction
 	force_move_player.emit(movement_direction)
 
 func _physics_process(delta):
