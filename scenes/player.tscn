@@ -1,8 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://m11ngetuthtg"]
+[gd_scene load_steps=19 format=3 uid="uid://m11ngetuthtg"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_47ri6"]
+[ext_resource type="Texture2D" uid="uid://ckkiaqnopq1kc" path="res://assets/sprites/Player/backpacklessplayer.png" id="2_lh5xx"]
 [ext_resource type="Texture2D" uid="uid://645ui8jfo8dl" path="res://assets/sprites/Player/player.png" id="3_cq5sd"]
-[ext_resource type="AudioStream" uid="uid://njajpfrjdnyb" path="res://resources/StepsSfx.tres" id="3_fes37"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mb2do"]
 atlas = ExtResource("2_lh5xx")
@@ -54,10 +54,9 @@ region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8j17p"]
 atlas = ExtResource("3_cq5sd")
-
 region = Rect2(48, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_e8ivm"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_od3bd"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -65,7 +64,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -126,15 +125,11 @@ size = Vector2(16, 16)
 script = ExtResource("1_47ri6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_e8ivm")
-animation = &"Walk_Left"
+sprite_frames = SubResource("SpriteFrames_od3bd")
+animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_1oqwn")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 16)
-
-[node name="StepsSFXPlayer" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_fes37")
-volume_db = -3.0

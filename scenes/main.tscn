@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://b3u2ob2gato7t"]
+[gd_scene load_steps=9 format=3 uid="uid://b3u2ob2gato7t"]
 
 [ext_resource type="PackedScene" uid="uid://m11ngetuthtg" path="res://scenes/player.tscn" id="1_6yceo"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_dvxnh"]
-[ext_resource type="AudioStream" uid="uid://ogfax2xgy1ys" path="res://assets/music/spooky_slow.mp3" id="2_yabdx"]
 [ext_resource type="Texture2D" uid="uid://bwdmi32kfkrqa" path="res://assets/sprites/Tilemap/tilemap.png" id="2_hvhf8"]
 [ext_resource type="Script" path="res://scripts/camera_transition.gd" id="4_pvwy4"]
 [ext_resource type="Script" path="res://scripts/trigger_room_transition.gd" id="5_dhtgg"]
@@ -1103,11 +1102,6 @@ script = ExtResource("1_dvxnh")
 [node name="TimerQuit" type="Timer" parent="GameManager"]
 wait_time = 1.2
 one_shot = true
-
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="GameManager"]
-stream = ExtResource("2_yabdx")
-volume_db = -9.279
-autoplay = true
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_s0iaa")
