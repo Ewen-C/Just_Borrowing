@@ -1118,7 +1118,6 @@ layer_3/tile_data = PackedInt32Array(-458762, 262147, 6, -393226, 262147, 7, -45
 [node name="Camera" type="Camera2D" parent="."]
 position_smoothing_speed = 4.0
 script = ExtResource("4_pvwy4")
-transition_speed = 5.5
 
 [node name="Player" parent="." instance=ExtResource("1_6yceo")]
 position = Vector2(-56, 8)
