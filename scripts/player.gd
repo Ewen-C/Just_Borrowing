@@ -18,12 +18,13 @@ var is_hidden = false
 
 
 func _physics_process(delta):
-	if !is_moving and !is_hidden:
-		process_new_input()
-	elif movement_direction != Vector2.ZERO :
-		move_player(delta)
+	if !is_hidden :
+		if !is_moving :
+			process_new_movement()
+		elif movement_direction != Vector2.ZERO :
+			move_player(delta)
 		
-func process_new_input() :
+func process_new_movement() :
 	if !nb_auto_movements :
 		if !movement_direction.y : movement_direction.x = Input.get_axis("move_left", "move_right")
 		if !movement_direction.x : movement_direction.y = Input.get_axis("move_up", "move_down")
@@ -52,14 +53,17 @@ func move_player(delta) :
 		position = start_movement_position + (TILE_SIZE * movement_direction)
 		percent_to_next_tile = 0.0
 		
+		print_debug(position)
+		print_debug(is_hidden)
+		
 		if nb_auto_movements : 
 			nb_auto_movements -= 1
-			if nb_auto_movements : process_new_input()
+			if nb_auto_movements : process_new_movement()
 		
 		if !nb_auto_movements :
 			is_moving = false # Enables new input
 			var old_direction = movement_direction
-			process_new_input()
+			process_new_movement()
 			
 			if movement_direction == Vector2.ZERO : 
 				animated_sprite.play("Idle")
@@ -80,12 +84,4 @@ signal check_new_tile(Vector2)
 func _on_camera_force_move_player(in_movement_direction, tiles_to_cross):
 	movement_direction = in_movement_direction
 	nb_auto_movements = tiles_to_cross
-	process_new_input()
-
-func hide_somewhere():
-	is_hidden = true
-	animated_sprite.visible = false
-	
-func exit_hideout():
-	is_hidden = false
-	animated_sprite.visible = true
+	process_new_movement()

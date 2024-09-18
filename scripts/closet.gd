@@ -10,15 +10,7 @@ const exit_text = "PRESS A TO EXIT"
 
 var player_in_area = false
 var player = null
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	hint_label.visible = false
-	hint_animation.play("bounce")
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+var ongoing_animation = false
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
@@ -30,26 +22,31 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		hint_label.visible = false
 		player_in_area = false
-		player = body
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_released("action_a") and player_in_area:
+func _input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("action_a") and player_in_area and !ongoing_animation and !player.is_moving :
 		sprite.visible = false
 		animated_sprite.visible = true
+		ongoing_animation = true
 		
 		if player.is_hidden:
 			animated_sprite.play("exit")
 		else:
-			player.hide_somewhere()  # First we hide the player sprite and then play the animation
+			# First we hide the player sprite and then play the animation
+			player.animated_sprite.visible = false
+			player.is_hidden = true
 			animated_sprite.play("hide")
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	# Made like this so we show back the player sprite only after animation finishes
+	
 	if player.is_hidden and animated_sprite.animation == "exit":
-		player.exit_hideout()
+		player.animated_sprite.visible = true
+		player.is_hidden = false
 		hint_label.text = hide_text
 	else:
 		hint_label.text = exit_text
-		
+
 	sprite.visible = true
 	animated_sprite.visible = false
+	ongoing_animation = false
