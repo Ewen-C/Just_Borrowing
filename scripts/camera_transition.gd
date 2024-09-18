@@ -5,11 +5,11 @@ extends Camera2D
 
 var target_position = Vector2 (0, 0)
 
-func _on_area_2d_camera_room_transition(movement_direction):
+func _on_area_2d_camera_room_transition(movement_direction, tiles_to_cross):
 	target_position += room_size * movement_direction
 	var tween = create_tween()
 	tween.tween_property(self, "position", target_position, transition_speed)\
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
-	force_move_player.emit(movement_direction)
+	force_move_player.emit(movement_direction, tiles_to_cross)
 
-signal force_move_player(Vector2)
+signal force_move_player(Vector2, int)

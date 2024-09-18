@@ -35,7 +35,7 @@ func process_new_input() :
 		elif movement_direction.y == 1 : animated_sprite.play("Walk_Down")
 		else : animated_sprite.play("Walk_Up")
 		
-		animated_sprite.flip_h = (movement_direction.x == -1) # Flip the sprite
+		animated_sprite.flip_h = (movement_direction.x == -1 && raycast_check_movement())
 	
 func move_player(delta) :
 	percent_to_next_tile += walk_speed * delta
@@ -52,7 +52,11 @@ func move_player(delta) :
 			is_moving = false # Enables new input
 			var old_direction = movement_direction
 			process_new_input()
-			if movement_direction == Vector2.ZERO : animated_sprite.play("Idle")
+			
+			if movement_direction == Vector2.ZERO : 
+				animated_sprite.play("Idle")
+				animated_sprite.flip_h = false
+			
 			check_new_tile.emit(old_direction) # Signal
 		
 	else :
@@ -65,7 +69,7 @@ func raycast_check_movement() :
 
 signal check_new_tile(Vector2)
 
-func _on_camera_force_move_player(in_movement_direction):
+func _on_camera_force_move_player(in_movement_direction, tiles_to_cross):
 	movement_direction = in_movement_direction
-	nb_auto_movements = 3
+	nb_auto_movements = tiles_to_cross
 	process_new_input()
