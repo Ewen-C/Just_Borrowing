@@ -1,0 +1,11 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=3 format=3 uid="uid://b501j5n06mlcl"]
+
+[ext_resource type="AudioStream" uid="uid://buxmw1w443uh6" path="res://assets/sfx/step_l.mp3" id="1_b4stq"]
+[ext_resource type="AudioStream" uid="uid://yuroek5fraxb" path="res://assets/sfx/step_r.mp3" id="2_eigcy"]
+
+[resource]
+streams_count = 2
+stream_0/stream = ExtResource("1_b4stq")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_eigcy")
+stream_1/weight = 1.0
