@@ -6,6 +6,7 @@ const TILE_SIZE = 8
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var raycast = $RayCast2D
+@onready var steps_sfx_player = $StepsSFX
 
 var is_moving = false
 var start_movement_position = Vector2(0, 0)
@@ -13,8 +14,11 @@ var movement_direction = Vector2(0, 0)
 var percent_to_next_tile = 0.0
 var nb_auto_movements = 0
 
+var is_hidden = false
+
+
 func _physics_process(delta):
-	if !is_moving :
+	if !is_moving and !is_hidden:
 		process_new_input()
 	elif movement_direction != Vector2.ZERO :
 		move_player(delta)
@@ -30,12 +34,16 @@ func process_new_input() :
 		
 		start_movement_position = position
 		is_moving = true
+		if !steps_sfx_player.playing:
+			steps_sfx_player.play()
 		
 		if movement_direction.x != 0 : animated_sprite.play("Walk_Right")
 		elif movement_direction.y == 1 : animated_sprite.play("Walk_Down")
 		else : animated_sprite.play("Walk_Up")
 		
 		animated_sprite.flip_h = (movement_direction.x == -1 && raycast_check_movement())
+	else:
+		steps_sfx_player.stop()
 	
 func move_player(delta) :
 	percent_to_next_tile += walk_speed * delta
@@ -73,3 +81,11 @@ func _on_camera_force_move_player(in_movement_direction, tiles_to_cross):
 	movement_direction = in_movement_direction
 	nb_auto_movements = tiles_to_cross
 	process_new_input()
+
+func hide_somewhere():
+	is_hidden = true
+	animated_sprite.visible = false
+	
+func exit_hideout():
+	is_hidden = false
+	animated_sprite.visible = true
