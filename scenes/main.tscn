@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b3u2ob2gato7t"]
+[gd_scene load_steps=14 format=3 uid="uid://b3u2ob2gato7t"]
 
 [ext_resource type="PackedScene" uid="uid://m11ngetuthtg" path="res://scenes/player.tscn" id="1_6yceo"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_dvxnh"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ng56k30qukya" path="res://assets/sprites/Tilemap/items.png" id="2_xcas7"]
 [ext_resource type="Script" path="res://scripts/camera_transition.gd" id="4_pvwy4"]
 [ext_resource type="Script" path="res://scripts/trigger_room_transition.gd" id="5_dhtgg"]
+[ext_resource type="PackedScene" uid="uid://c0n4affdotjxa" path="res://scenes/closet.tscn" id="8_pvltu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dqyt2"]
 texture = ExtResource("2_xcas7")
@@ -1470,6 +1471,9 @@ tiles_to_cross = 3
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_1tmmg")
 one_way_collision_margin = 0.0
+
+[node name="Closet" parent="." instance=ExtResource("8_pvltu")]
+position = Vector2(192, -15.5)
 
 [connection signal="timeout" from="GameManager/TimerQuit" to="GameManager" method="_on_timer_timeout"]
 [connection signal="force_move_player" from="Camera" to="Player" method="_on_camera_force_move_player"]

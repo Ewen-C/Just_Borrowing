@@ -14,8 +14,11 @@ var movement_direction = Vector2(0, 0)
 var percent_to_next_tile = 0.0
 var nb_auto_movements = 0
 
+var is_hidden = false
+
+
 func _physics_process(delta):
-	if !is_moving :
+	if !is_moving and !is_hidden:
 		process_new_input()
 	elif movement_direction != Vector2.ZERO :
 		move_player(delta)
@@ -78,3 +81,11 @@ func _on_camera_force_move_player(in_movement_direction, tiles_to_cross):
 	movement_direction = in_movement_direction
 	nb_auto_movements = tiles_to_cross
 	process_new_input()
+
+func hide_somewhere():
+	is_hidden = true
+	animated_sprite.visible = false
+	
+func exit_hideout():
+	is_hidden = false
+	animated_sprite.visible = true
