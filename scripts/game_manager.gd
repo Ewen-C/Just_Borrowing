@@ -15,4 +15,4 @@ func _on_timer_timeout():
 
 func _on_item_item_pickup(new_item_type):
 	item_list[new_item_type] = true
-	print_debug("Collected " + str(new_item_type))
+	print_debug("Collected " + str(Constants.ItemType.keys()[new_item_type]))

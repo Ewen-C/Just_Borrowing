@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b3u2ob2gato7t"]
+[gd_scene load_steps=17 format=3 uid="uid://b3u2ob2gato7t"]
 
 [ext_resource type="PackedScene" uid="uid://m11ngetuthtg" path="res://scenes/player.tscn" id="1_6yceo"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_dvxnh"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://scripts/trigger_room_transition.gd" id="5_dhtgg"]
 [ext_resource type="PackedScene" uid="uid://c0n4affdotjxa" path="res://scenes/closet.tscn" id="8_pvltu"]
 [ext_resource type="PackedScene" uid="uid://cq2uxxk54u2cb" path="res://scenes/item.tscn" id="9_5xkje"]
+[ext_resource type="Texture2D" uid="uid://ceb415n1uvh3x" path="res://assets/sprites/Items/key.png" id="11_bqjkc"]
+[ext_resource type="Texture2D" uid="uid://cka63yow2hicw" path="res://assets/sprites/Items/key_dark.png" id="11_spd4m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dqyt2"]
 texture = ExtResource("2_xcas7")
@@ -1478,8 +1480,13 @@ position = Vector2(192, -15.5)
 
 [node name="Items" type="Node" parent="."]
 
-[node name="Item" parent="Items" instance=ExtResource("9_5xkje")]
-position = Vector2(-120, -8)
+[node name="Item_Luggage" parent="Items" instance=ExtResource("9_5xkje")]
+position = Vector2(64, 88)
+
+[node name="Item_Key" parent="Items" instance=ExtResource("9_5xkje")]
+position = Vector2(224, 0)
+normal_sprite = ExtResource("11_bqjkc")
+dark_sprite = ExtResource("11_spd4m")
 
 [connection signal="timeout" from="GameManager/TimerQuit" to="GameManager" method="_on_timer_timeout"]
 [connection signal="force_move_player" from="Camera" to="Player" method="_on_camera_force_move_player"]
@@ -1495,4 +1502,5 @@ position = Vector2(-120, -8)
 [connection signal="body_entered" from="Transitions/Trigger3" to="Transitions/Trigger3" method="_on_body_entered"]
 [connection signal="body_exited" from="Transitions/Trigger3" to="Transitions/Trigger3" method="_on_body_exited"]
 [connection signal="camera_room_transition" from="Transitions/Trigger3" to="Camera" method="_on_area_2d_camera_room_transition"]
-[connection signal="item_pickup" from="Items/Item" to="GameManager" method="_on_item_item_pickup"]
+[connection signal="item_pickup" from="Items/Item_Luggage" to="GameManager" method="_on_item_item_pickup"]
+[connection signal="item_pickup" from="Items/Item_Key" to="GameManager" method="_on_item_item_pickup"]
