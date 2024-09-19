@@ -53,9 +53,6 @@ func move_player(delta) :
 		position = start_movement_position + (TILE_SIZE * movement_direction)
 		percent_to_next_tile = 0.0
 		
-		print_debug(position)
-		print_debug(is_hidden)
-		
 		if nb_auto_movements : 
 			nb_auto_movements -= 1
 			if nb_auto_movements : process_new_movement()

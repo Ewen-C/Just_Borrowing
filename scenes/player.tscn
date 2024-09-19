@@ -123,6 +123,8 @@ animations = [{
 size = Vector2(16, 16)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 7
+collision_mask = 7
 script = ExtResource("1_47ri6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -133,7 +135,7 @@ animation = &"Idle"
 shape = SubResource("RectangleShape2D_1oqwn")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(0, 16)
+target_position = Vector2(0, 12)
 
 [node name="StepsSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_hpng7")

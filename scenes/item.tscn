@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cq2uxxk54u2cb"]
+
+[ext_resource type="Texture2D" uid="uid://cqqfioayr3rjy" path="res://assets/sprites/Items/luggage.png" id="1_a05r6"]
+[ext_resource type="Script" path="res://scripts/item.gd" id="2_t1aat"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i0gbp"]
+size = Vector2(16, 16)
+
+[node name="Item" type="StaticBody2D"]
+script = ExtResource("2_t1aat")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_a05r6")
+
+[node name="PhysicsCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_i0gbp")
+
+[node name="TriggerArea" type="Area2D" parent="."]
+scale = Vector2(2, 2)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerArea"]
+shape = SubResource("RectangleShape2D_i0gbp")
+
+[connection signal="body_entered" from="TriggerArea" to="." method="_on_trigger_area_body_entered"]
+[connection signal="body_exited" from="TriggerArea" to="." method="_on_trigger_area_body_exited"]
