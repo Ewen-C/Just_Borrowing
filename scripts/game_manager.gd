@@ -1,15 +1,13 @@
 extends Node
 
-@onready var timer = $TimerQuit
+var item_list = {}
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	for item_type in Constants.ItemType : item_list[item_type] = false
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if Input.is_action_just_pressed("select") : timer.start()
-	if Input.is_action_just_released("select") : timer.stop()
+	if Input.is_action_just_pressed("action_select"): get_tree().quit()
 
-func _on_timer_timeout():
-	get_tree().quit()
+func _on_item_item_pickup(new_item_type):
+	item_list[Constants.ItemType.keys()[new_item_type]] = true
+	print_debug("Collected " + str(Constants.ItemType.keys()[new_item_type]))
