@@ -9,8 +9,8 @@ const TILE_SIZE = 8
 @onready var steps_sfx_player = $StepsSFX
 
 var is_moving = false
-var start_movement_position = Vector2(0, 0)
-var movement_direction = Vector2(0, 0)
+var start_movement_position = Vector2.ZERO
+var movement_direction = Vector2.ZERO
 var percent_to_next_tile = 0.0
 var nb_auto_movements = 0
 

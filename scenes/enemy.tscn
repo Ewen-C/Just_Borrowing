@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cjkys2xj8gph0"]
+[gd_scene load_steps=15 format=3 uid="uid://cjkys2xj8gph0"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_lcxa0"]
 [ext_resource type="Texture2D" uid="uid://gc5vwvpfimjx" path="res://assets/sprites/Enemy/enemy.png" id="1_xkmif"]
@@ -30,6 +30,18 @@ region = Rect2(16, 32, 16, 32)
 atlas = ExtResource("1_xkmif")
 region = Rect2(32, 32, 16, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3upy"]
+atlas = ExtResource("1_xkmif")
+region = Rect2(0, 62, 16, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xlcd"]
+atlas = ExtResource("1_xkmif")
+region = Rect2(16, 62, 16, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ud304"]
+atlas = ExtResource("1_xkmif")
+region = Rect2(32, 62, 16, 31)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_dddxk"]
 animations = [{
 "frames": [{
@@ -59,7 +71,24 @@ animations = [{
 "loop": true,
 "name": &"Walk_Right",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y3upy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xlcd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ud304")
+}],
+"loop": true,
+"name": &"Walk_Up",
+"speed": 5.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_boo3v"]
+size = Vector2(32, 32)
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_lcxa0")
@@ -72,15 +101,27 @@ shape = SubResource("RectangleShape2D_pqtre")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dddxk")
-animation = &"Walk_Down"
+animation = &"Walk_Up"
+frame = 1
+frame_progress = 0.0641605
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, 8)
 target_position = Vector2(0, 12)
 
 [node name="TimerZoneChange" type="Timer" parent="."]
 wait_time = 5.0
 
-[node name="TimerChase" type="Timer" parent="."]
-wait_time = 0.1
+[node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(0, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_boo3v")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, 8)
 
 [connection signal="timeout" from="TimerZoneChange" to="." method="_on_timer_zone_change_timeout"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
