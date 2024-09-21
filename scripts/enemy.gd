@@ -20,7 +20,6 @@ var is_moving = false
 func _ready():
 	nav.target_position = Vector2.ZERO
 	timer_zone_change.start()
-	
 
 func _physics_process(delta):
 	if is_waiting :

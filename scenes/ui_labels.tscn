@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyslqpq1egpbu"]
+
+[ext_resource type="Theme" uid="uid://btfybead03q6m" path="res://resources/default.tres" id="1_0mivu"]
+
+[node name="UiLabels" type="RichTextLabel"]
+offset_right = 112.0
+offset_bottom = 64.0
+theme = ExtResource("1_0mivu")
+bbcode_enabled = true
+fit_content = true

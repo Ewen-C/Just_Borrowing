@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://pjwuogp4aosu"]
 
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_84k72"]
-[ext_resource type="FontFile" uid="uid://c5ey5rl106n1" path="res://assets/fonts/Quinquefive-ALoRM.ttf" id="2_xqdbk"]
+[ext_resource type="Theme" uid="uid://btfybead03q6m" path="res://resources/default.tres" id="2_j2ewu"]
 
 [node name="Pause Menu" type="Control"]
 process_mode = 2
@@ -22,18 +22,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.545098, 0.67451, 0.0588235, 1)
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 2
-offset_top = 8.0
-offset_right = 160.0
-offset_bottom = 24.0
-theme_override_colors/font_color = Color(0.0588235, 0.219608, 0.0588235, 1)
-theme_override_fonts/font = ExtResource("2_xqdbk")
-theme_override_font_sizes/font_size = 10
-text = "Items to 
-Collect"
-horizontal_alignment = 1
-
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -45,6 +33,17 @@ offset_right = -16.0
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_top = 8.0
+offset_right = 160.0
+offset_bottom = 40.0
+theme = ExtResource("2_j2ewu")
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "[center]Items to
+collect[/center]"
 
 [connection signal="draw" from="." to="." method="_on_draw"]
 [connection signal="hidden" from="." to="." method="_on_hidden"]
