@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=3 uid="uid://cjkys2xj8gph0"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_lcxa0"]
+[ext_resource type="Texture2D" uid="uid://gc5vwvpfimjx" path="res://assets/sprites/Enemy/enemy.png" id="1_xkmif"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pqtre"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_birpj"]
+atlas = ExtResource("1_xkmif")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tambk"]
+atlas = ExtResource("1_xkmif")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqknx"]
+atlas = ExtResource("1_xkmif")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7r10j"]
+atlas = ExtResource("1_xkmif")
+region = Rect2(0, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pakls"]
+atlas = ExtResource("1_xkmif")
+region = Rect2(16, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23kti"]
+atlas = ExtResource("1_xkmif")
+region = Rect2(32, 32, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dddxk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_birpj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tambk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqknx")
+}],
+"loop": true,
+"name": &"Walk_Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7r10j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pakls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23kti")
+}],
+"loop": true,
+"name": &"Walk_Right",
+"speed": 5.0
+}]
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_lcxa0")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_pqtre")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_dddxk")
+animation = &"Walk_Down"
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 12)
+
+[node name="TimerZoneChange" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="TimerChase" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="timeout" from="TimerZoneChange" to="." method="_on_timer_zone_change_timeout"]
