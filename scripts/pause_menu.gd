@@ -3,7 +3,7 @@ extends Control
 @onready var v_box_container = $VBoxContainer
 
 var current_items = {}
-const defaut_label = preload("res://scenes/ui_labels.tscn")
+@export var defaut_label : PackedScene
 
 # Reacreate labels with each _on_draw (to update strikethough)
 func _on_draw():

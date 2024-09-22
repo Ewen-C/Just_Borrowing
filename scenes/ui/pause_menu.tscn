@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://pjwuogp4aosu"]
+[gd_scene load_steps=4 format=3 uid="uid://pjwuogp4aosu"]
 
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_84k72"]
 [ext_resource type="Theme" uid="uid://btfybead03q6m" path="res://resources/default.tres" id="2_j2ewu"]
+[ext_resource type="PackedScene" uid="uid://cyslqpq1egpbu" path="res://scenes/ui/default_label.tscn" id="2_n7u4x"]
 
 [node name="Pause Menu" type="Control"]
 process_mode = 2
@@ -12,6 +13,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_84k72")
+defaut_label = ExtResource("2_n7u4x")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1

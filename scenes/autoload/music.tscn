@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://cphk187xe38rd"]
 
-[ext_resource type="AudioStream" uid="uid://cvt3bitffmf0t" path="res://assets/music/spooky_extra_slow.mp3" id="1_dqgmh"]
+[ext_resource type="AudioStream" uid="uid://cvt3bitffmf0t" path="res://assets/music/spooky_extra_slow.mp3" id="1_wcn37"]
 
 [node name="MusicPlayer" type="AudioStreamPlayer"]
 process_mode = 3
-stream = ExtResource("1_dqgmh")
+stream = ExtResource("1_wcn37")
 volume_db = -6.0
 autoplay = true

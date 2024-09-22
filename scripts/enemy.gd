@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 const TILE_SIZE = 8
 
-@export var walk_speed = 4
+@export var walk_speed : float = 3.5
 @export var player: CharacterBody2D = null
 
 @onready var nav : NavigationAgent2D = $NavigationAgent2D
@@ -32,7 +32,7 @@ func _physics_process(delta):
 func process_new_movement() -> void :
 	nav.target_position = player.position
 	var player_direction = (nav.get_next_path_position() - global_position).normalized()
-	if player_direction == Vector2.ZERO : return
+	if player_direction == Vector2.ZERO or not raycast_check_movement() : return
 	
 	if abs(player_direction.x) > abs(player_direction.y) :
 		movement_direction.x = 1 if player_direction.x > 0 else -1
@@ -65,10 +65,12 @@ func move_enemy(delta) -> void :
 	
 
 func _on_visible_on_screen_notifier_2d_screen_entered():
+	print_debug("CHASE")
 	current_state = monster_state.CHASE
 	timer_zone_change.stop()
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
+	print_debug("WANDER")
 	movement_direction = Vector2.ZERO
 	current_state = monster_state.WANDER
 	timer_zone_change.start()
