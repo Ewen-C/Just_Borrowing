@@ -22,7 +22,7 @@ var percent_to_next_tile = 0.0
 func _ready():
 	nav.target_position = Vector2.ZERO
 	timer_zone_change.start()
-	player = get_tree().get_nodes_in_group("player")[0]
+	player = get_tree().get_first_node_in_group("player")
 
 func _physics_process(delta):
 	if current_state == monster_state.CHASE :
