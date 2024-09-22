@@ -1,10 +1,23 @@
-[gd_scene load_steps=15 format=3 uid="uid://cjkys2xj8gph0"]
+[gd_scene load_steps=19 format=3 uid="uid://cjkys2xj8gph0"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_lcxa0"]
 [ext_resource type="Texture2D" uid="uid://gc5vwvpfimjx" path="res://assets/sprites/Enemy/enemy.png" id="1_xkmif"]
+[ext_resource type="Texture2D" uid="uid://ce3dg1ncjphu7" path="res://assets/sprites/Enemy/enemy captures player.png" id="2_d5oim"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pqtre"]
 size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_megco"]
+atlas = ExtResource("2_d5oim")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_881ul"]
+atlas = ExtResource("2_d5oim")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a846u"]
+atlas = ExtResource("2_d5oim")
+region = Rect2(32, 0, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_birpj"]
 atlas = ExtResource("1_xkmif")
@@ -44,6 +57,20 @@ region = Rect2(32, 62, 16, 31)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dddxk"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_megco")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_881ul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a846u")
+}],
+"loop": false,
+"name": &"Lose",
+"speed": 1.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_birpj")
@@ -88,7 +115,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_boo3v"]
-size = Vector2(32, 32)
+size = Vector2(26, 26)
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_lcxa0")
@@ -101,9 +128,7 @@ shape = SubResource("RectangleShape2D_pqtre")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dddxk")
-animation = &"Walk_Up"
-frame = 1
-frame_progress = 0.0641605
+animation = &"Lose"
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(0, 8)
@@ -121,6 +146,7 @@ shape = SubResource("RectangleShape2D_boo3v")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0, 8)
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="TimerZoneChange" to="." method="_on_timer_zone_change_timeout"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

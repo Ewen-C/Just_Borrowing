@@ -10,7 +10,7 @@ const TILE_SIZE = 8
 @onready var raycast : RayCast2D = $RayCast2D
 @onready var timer_zone_change : Timer = $TimerZoneChange
 
-enum monster_state { WANDER, CHASE }
+enum monster_state { WANDER, CHASE, CAUGHT }
 
 var current_state = monster_state.WANDER
 var is_moving = false
@@ -84,6 +84,15 @@ func notify_position():
 
 
 func _on_hitbox_body_entered(body):
-	if body.is_in_group("player") : # Check if player, if so -> lose()
+	if body.is_in_group("player") :
 		print_debug("LOSE")
+		current_state = monster_state.CAUGHT
+		player.is_hidden = true
+		player.visible = false
+		animated_sprite.play("Lose")
 		pass; # Show kill animation then game over screen then restart
+
+func _on_animated_sprite_2d_animation_finished():
+	game_over.emit()
+	
+signal game_over

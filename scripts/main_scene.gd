@@ -19,3 +19,7 @@ func toogle_pause() -> void:
 		pause_menu.current_items = game_manager.item_list
 	else: 
 		pause_menu.hide()
+
+
+func _on_enemy_game_over():
+	get_tree().reload_current_scene()
