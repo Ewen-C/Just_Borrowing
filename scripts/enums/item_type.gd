@@ -2,5 +2,8 @@ class_name Constants
 
 enum ItemType {
 	LUGGAGE,
-	KEY
+	KEY,
+	SHOES,
+	CHAINSAW, 
+	TEA_KETTLE
 }

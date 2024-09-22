@@ -10,7 +10,7 @@ func _on_draw():
 	for item in current_items :
 		var my_label = defaut_label.instantiate()
 		if current_items[item] : my_label.push_strikethrough()
-		my_label.append_text(item)
+		my_label.append_text(item.replace("_", " "))
 		v_box_container.add_child(my_label)
 
 func _on_hidden():
