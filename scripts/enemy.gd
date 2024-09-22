@@ -41,7 +41,7 @@ func process_new_movement() -> void :
 	else :
 		movement_direction.y = 1 if player_direction.y > 0 else -1
 		movement_direction.x = 0
-		animated_sprite.play("Walk_Up") if player_direction.y > 0 else animated_sprite.play("Walk_Down")
+		animated_sprite.play("Walk_Down") if player_direction.y > 0 else animated_sprite.play("Walk_Up")
 
 	start_movement_position = position
 	is_moving = true
