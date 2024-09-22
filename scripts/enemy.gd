@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 const TILE_SIZE = 8
 
-@export var walk_speed = 4.5
+@export var walk_speed = 4
 @export var player: CharacterBody2D = null
 
 @onready var nav : NavigationAgent2D = $NavigationAgent2D

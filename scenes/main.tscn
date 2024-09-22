@@ -1,10 +1,9 @@
-[gd_scene load_steps=21 format=4 uid="uid://b3u2ob2gato7t"]
+[gd_scene load_steps=20 format=4 uid="uid://b3u2ob2gato7t"]
 
 [ext_resource type="PackedScene" uid="uid://m11ngetuthtg" path="res://scenes/player.tscn" id="1_6yceo"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_dvxnh"]
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_pvp60"]
 [ext_resource type="PackedScene" uid="uid://pjwuogp4aosu" path="res://scenes/pause_menu.tscn" id="1_vp2t2"]
-[ext_resource type="AudioStream" uid="uid://cvt3bitffmf0t" path="res://assets/music/spooky_extra_slow.mp3" id="2_fyb3x"]
 [ext_resource type="Texture2D" uid="uid://bwdmi32kfkrqa" path="res://assets/sprites/Tilemap/tilemap.png" id="2_hvhf8"]
 [ext_resource type="Texture2D" uid="uid://ng56k30qukya" path="res://assets/sprites/Tilemap/items.png" id="2_xcas7"]
 [ext_resource type="Script" path="res://scripts/camera_transition.gd" id="4_pvwy4"]
@@ -658,11 +657,6 @@ visible = false
 [node name="GameManager" type="Node" parent="."]
 process_mode = 3
 script = ExtResource("1_dvxnh")
-
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="GameManager"]
-stream = ExtResource("2_fyb3x")
-volume_db = -6.0
-autoplay = true
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_tfl8p")
