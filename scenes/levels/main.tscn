@@ -169,10 +169,7 @@ one_way_collision_margin = 0.0
 process_mode = 1
 
 [node name="Closet" parent="HidingStuff" instance=ExtResource("10_qrfw2")]
-position = Vector2(104, -144)
-
-[node name="Closet2" parent="HidingStuff" instance=ExtResource("10_qrfw2")]
-position = Vector2(168, -144)
+position = Vector2(176, -156)
 
 [node name="Items" type="Node" parent="."]
 process_mode = 1
@@ -228,7 +225,6 @@ position = Vector2(10, 1)
 [connection signal="body_exited" from="Transitions/TriggerDoor1Back2" to="Transitions/TriggerDoor1Back2" method="_on_body_exited"]
 [connection signal="camera_room_transition" from="Transitions/TriggerDoor1Back2" to="Camera" method="_on_area_2d_camera_room_transition"]
 [connection signal="player_visibility_changed" from="HidingStuff/Closet" to="AIEnemy" method="_on_closet_player_visibility_changed"]
-[connection signal="player_visibility_changed" from="HidingStuff/Closet2" to="AIEnemy" method="_on_closet_2_player_visibility_changed"]
 [connection signal="item_pickup" from="Items/Item_Luggage" to="GameManager" method="_on_item_item_pickup"]
 [connection signal="item_pickup" from="Items/Item_Key" to="GameManager" method="_on_item_item_pickup"]
 [connection signal="item_pickup" from="Items/Item_Shoes" to="GameManager" method="_on_item_item_pickup"]
