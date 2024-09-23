@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Just Borrowing"
 config/version="0.5"
-run/main_scene="res://scenes/levels/main.tscn"
+run/main_scene="res://scenes/levels/start_screen.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 run/max_fps=30
 boot_splash/bg_color=Color(0.12549, 0.223529, 0.105882, 1)

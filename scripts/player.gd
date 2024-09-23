@@ -8,6 +8,7 @@ const TILE_SIZE = 8
 @onready var raycast = $RayCast2D
 @onready var steps_sfx_player = $StepsSFX
 
+@onready var evac_label = $Evacuate
 var is_moving = false
 var start_movement_position = Vector2.ZERO
 var movement_direction = Vector2.ZERO
@@ -16,6 +17,7 @@ var nb_auto_movements = 0
 
 var is_hidden = false
 
+var amount_of_items = 0
 
 func _physics_process(delta) -> void:
 	if !is_hidden :
@@ -45,7 +47,8 @@ func process_new_movement() -> void :
 		animated_sprite.flip_h = (movement_direction.x == -1 && raycast_check_movement())
 	else:
 		steps_sfx_player.stop()
-	
+
+
 func move_player(delta) -> void :
 	percent_to_next_tile += walk_speed * delta
 	

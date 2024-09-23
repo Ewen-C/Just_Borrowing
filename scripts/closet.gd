@@ -23,6 +23,8 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		hint_label.visible = false
 		player_in_area = false
 
+signal player_visibility_changed(visibility : bool)
+
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("action_a") and player_in_area and !ongoing_animation and !player.is_moving :
 		sprite.visible = false
@@ -36,6 +38,9 @@ func _input(_event: InputEvent) -> void:
 			player.animated_sprite.visible = false
 			player.is_hidden = true
 			animated_sprite.play("hide")
+			#emit a signal for monster
+			player_visibility_changed.emit(false)
+			
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	# Made like this so we show back the player sprite only after animation finishes
@@ -44,6 +49,8 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		player.animated_sprite.visible = true
 		player.is_hidden = false
 		hint_label.text = hide_text
+		#emit signal for enemy logic
+		player_visibility_changed.emit(true)
 	else:
 		hint_label.text = exit_text
 
